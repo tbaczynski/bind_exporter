@@ -20,6 +20,8 @@ prometheus_bind_exporter_listen_ip: ''
 prometheus_bind_exporter_version: '0.2.0-dev'
 prometheus_bind_exporter_targeturl: 'http://127.0.0.1:8053/'
 
+prometheus_bind_pid_file: '/run/named/named.pid'
+
 enable_ufw: false
 prometheus_bind_exporter_src_access:
   - "{{ ansible_default_ipv4.network }}/{{ ansible_default_ipv4.netmask }}"

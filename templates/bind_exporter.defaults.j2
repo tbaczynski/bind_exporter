@@ -5,7 +5,7 @@ START=yes
 #
 STARTUP_ARGS=' \
       -bind.stats-groups "server,view,tasks" \
-      -bind.pid-file {{ prometheus_bind_exporter_pid_path }}/bind_exporter.pid \
+      -bind.pid-file {{ prometheus_bind_pid_file }} \
       -bind.stats-url {{ prometheus_bind_exporter_targeturl }} \
       -log.level {{ prometheus_bind_exporter_loglevel }} \
       -log.format "logger:syslog?appname=bind_exporter&local=7" \
