@@ -70,4 +70,3 @@ Author Information
 ------------------
 
 Tomasz Baczynski
-
