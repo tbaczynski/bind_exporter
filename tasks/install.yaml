@@ -6,7 +6,7 @@
 
 - name: set internal variables for convenience
   set_fact:
-    prometheus_bind_exporter_subdir: "{{ prometheus_bind_exporter_install_path }}/bind_exporter-{{ prometheus_bind_exporter_version }}.{{ prometheus_platform_suffix }}"  # noqa 204
+    prometheus_bind_exporter_subdir: "{{ prometheus_bind_exporter_install_path }}"
 
 - name: set internal variables for convenience
   set_fact:
