@@ -6,7 +6,7 @@
 
 - name: set internal variables for convenience
   set_fact:
-    prometheus_bind_exporter_subdir: "{{ prometheus_bind_exporter_install_path }}"
+    prometheus_bind_exporter_subdir: "{{ prometheus_bind_exporter_install_path }}/bind_exporter-{{ prometheus_bind_exporter_version }}.{{ prometheus_platform_suffix }}"
 
 - name: set internal variables for convenience
   set_fact:
@@ -14,7 +14,7 @@
 
 - name: set download url for versions
   set_fact:
-    prometheus_bind_exporter_bin_url: "https://github.com/digitalocean/bind_exporter/releases/download/v{{ prometheus_bind_exporter_version }}/bind_exporter"  # noqa 204
+    prometheus_bind_exporter_tarball: 'bind_exporter-{{ prometheus_bind_exporter_version }}.{{ prometheus_platform_suffix }}.tar.gz'
 
 - name: create Prometheus group
   group:
@@ -42,12 +42,14 @@
     - "{{ prometheus_bind_exporter_config_path }}"
 
 - name: download and untar bind_exporter tarball
-  get_url:
-    url: "{{ prometheus_bind_exporter_bin_url }}"
+  unarchive:
+    src: "{{ prometheus_bind_exporter_tarball }}"
     dest: "{{ prometheus_bind_exporter_install_path }}"
     owner: '{{ prometheus_bind_exporter_user }}'
     group: '{{ prometheus_bind_exporter_group }}'
     mode: 0755
+    copy: yes
+    creates: '{{ prometheus_bind_exporter_subdir }}'
   notify:
     - restart bind_exporter
 

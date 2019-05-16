@@ -6,7 +6,10 @@ Install Prometheus Bind_Exporter from github repository
 Requirements
 ------------
 
-nope
+find and put tarball in your local dir, ie:
+```
+files/bind_exporter-0.2.0-dev.linux-amd64.tar.gz
+```
 
 Role Variables
 --------------
