@@ -14,6 +14,7 @@
 
 - name: set download url for versions
   set_fact:
+    prometheus_bind_exporter_tar_url: 'https://github.com/crazikPL/bind_exporter/releases/download/{{ prometheus_bind_exporter_version }}-amd64/bind_exporter-{{ prometheus_bind_exporter_version }}.{{ prometheus_platform_suffix }}.tar.gz'
     prometheus_bind_exporter_tarball: 'bind_exporter-{{ prometheus_bind_exporter_version }}.{{ prometheus_platform_suffix }}.tar.gz'
 
 - name: create Prometheus group
@@ -43,12 +44,12 @@
 
 - name: download and untar bind_exporter tarball
   unarchive:
-    src: "{{ prometheus_bind_exporter_tarball }}"
+    src: "{{ prometheus_bind_exporter_tar_url }}"
     dest: "{{ prometheus_bind_exporter_install_path }}"
     owner: '{{ prometheus_bind_exporter_user }}'
     group: '{{ prometheus_bind_exporter_group }}'
     mode: 0755
-    copy: yes
+    remote_src: yes
     creates: '{{ prometheus_bind_exporter_subdir }}'
   notify:
     - restart bind_exporter
