@@ -1,22 +1,4 @@
 ---
-- name: set internal variable platform-suffix for convenience
-  set_fact:
-    prometheus_platform_suffix: "linux-amd64"
-  when: ansible_architecture == "x86_64"
-
-- name: set internal variables for convenience
-  set_fact:
-    prometheus_bind_exporter_subdir: "{{ prometheus_bind_exporter_install_path }}/bind_exporter-{{ prometheus_bind_exporter_version }}.{{ prometheus_platform_suffix }}" # noqa 204
-
-- name: set internal variables for convenience
-  set_fact:
-    prometheus_bind_exporter_daemon_dir: "{{ prometheus_bind_exporter_subdir }}"
-
-- name: set download url for versions
-  set_fact:
-    prometheus_bind_exporter_tar_url: 'https://github.com/crazikPL/bind_exporter/releases/download/{{ prometheus_bind_exporter_version }}-amd64/bind_exporter-{{ prometheus_bind_exporter_version }}.{{ prometheus_platform_suffix }}.tar.gz' # noqa 204
-    prometheus_bind_exporter_tarball: 'bind_exporter-{{ prometheus_bind_exporter_version }}.{{ prometheus_platform_suffix }}.tar.gz'
-
 - name: create Prometheus group
   group:
     name: '{{ prometheus_bind_exporter_group }}'
@@ -41,16 +23,16 @@
   loop:
     - "{{ prometheus_bind_exporter_install_path }}"
     - "{{ prometheus_bind_exporter_config_path }}"
+    - "{{ prometheus_bind_exporter_subdir }}"
 
 - name: download and untar bind_exporter tarball
-  unarchive:
-    src: "{{ prometheus_bind_exporter_tar_url }}"
-    dest: "{{ prometheus_bind_exporter_install_path }}"
+  get_url:
+    url: "{{ prometheus_bind_exporter_url }}"
+    dest: "{{ prometheus_bind_exporter_subdir }}/bind_exporter"
     owner: '{{ prometheus_bind_exporter_user }}'
     group: '{{ prometheus_bind_exporter_group }}'
     mode: 0755
-    remote_src: yes
-    creates: '{{ prometheus_bind_exporter_subdir }}'
+    checksum: '{{ prometheus_bind_exporter_checksum }}'
   notify:
     - restart bind_exporter
 

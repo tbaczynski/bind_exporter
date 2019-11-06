@@ -10,7 +10,7 @@ EnvironmentFile=-/etc/default/bind_exporter
 User={{ prometheus_bind_exporter_user }}
 Group={{ prometheus_bind_exporter_group }}
 ExecReload=/bin/kill -HUP $MAINPID
-ExecStart={{ prometheus_bind_exporter_daemon_dir }}/bind_exporter $STARTUP_ARGS
+ExecStart={{ prometheus_bind_exporter_subdir }}/bind_exporter $STARTUP_ARGS
 
 SyslogIdentifier=prometheus-bind_exporter
 Restart=always

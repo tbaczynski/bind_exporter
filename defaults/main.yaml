@@ -18,7 +18,13 @@ prometheus_bind_exporter_weblisten: '{{ prometheus_bind_exporter_listen_ip }}:{{
 prometheus_bind_exporter_listen_port: '9119'
 prometheus_bind_exporter_listen_ip: ''
 prometheus_bind_exporter_version: '0.2.0-dev'
+prometheus_bind_exporter_checksum: 'sha256:0429c35273d52a7c6d9cbc1de5f45dc217a457d96c066370999be605eeb1d985'
 prometheus_bind_exporter_targeturl: 'http://127.0.0.1:8053/'
+
+prometheus_bind_exporter_repo: 'https://github.com/digitalocean/bind_exporter'
+prometheus_bind_exporter_subdir: "{{ prometheus_bind_exporter_install_path }}/bind_exporter-{{ prometheus_bind_exporter_version }}" # noqa 204
+prometheus_bind_exporter_url: '{{ prometheus_bind_exporter_repo }}/releases/download/{{ prometheus_bind_exporter_version }}/bind_exporter' # noqa 204
+
 
 prometheus_bind_pid_file: '/run/named/named.pid'
 
