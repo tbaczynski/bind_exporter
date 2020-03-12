@@ -6,7 +6,7 @@ galaxy_info:
 
   license: BSD
 
-  min_ansible_version: 2.7
+  min_ansible_version: 2.9
 
   platforms:
     - name: Ubuntu
@@ -15,9 +15,13 @@ galaxy_info:
         - bionic
     - name: Debian
       versions:
+        - wheezy
         - jessie
+        - scratch
+        - buster
 
   galaxy_tags:
+    - bind
     - system
     - prometheus
     - monitoring
