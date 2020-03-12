@@ -1,19 +1,12 @@
 ---
-# handlers file for bind_exporter
-
 - name: restart bind_exporter
-  systemd:
+  service:
     name: bind_exporter
     state: restarted
-    daemon_reload: yes
-  tags:
-    - prometheus
-    - bind_exporter
+  tags: [ prometheus, bind_exporter ]
 
 - name: systemd reload
   systemd:
-    daemon_reload: yes
-  tags:
-    - prometheus
-    - bind_exporter
+    daemon_reload: true
+  tags: [ prometheus, bind_exporter ]
 ...

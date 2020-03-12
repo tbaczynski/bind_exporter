@@ -1,0 +1,5 @@
+---
+# vars file for bind_exporter (Debian)
+
+prometheus_pid_path: '/run'
+...
