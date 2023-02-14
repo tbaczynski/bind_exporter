@@ -17,7 +17,7 @@ prometheus_bind_exporter_loglevel: '{{ prometheus_loglevel }}'
 prometheus_bind_exporter_weblisten: '{{ prometheus_bind_exporter_listen_ip }}:{{ prometheus_bind_exporter_listen_port }}'
 prometheus_bind_exporter_listen_port: '9119'
 prometheus_bind_exporter_listen_ip: ''
-prometheus_bind_exporter_version: '0.3.0'
+prometheus_bind_exporter_version: '0.6.0'
 prometheus_bind_exporter_targeturl: 'http://127.0.0.1:8053/'
 
 prometheus_bind_pid_file: '/run/named/named.pid'
