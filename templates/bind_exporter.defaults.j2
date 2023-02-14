@@ -4,8 +4,8 @@ START=yes
 
 #
 STARTUP_ARGS=" \
-      -bind.stats-groups server,view,tasks \
-      -bind.pid-file {{ prometheus_bind_pid_file }} \
-      -bind.stats-url {{ prometheus_bind_exporter_targeturl }} \
-      -web.listen-address {{ prometheus_bind_exporter_weblisten }} \
+      --bind.stats-groups server,view,tasks \
+      --bind.pid-file {{ prometheus_bind_pid_file }} \
+      --bind.stats-url {{ prometheus_bind_exporter_targeturl }} \
+      --web.listen-address {{ prometheus_bind_exporter_weblisten }} \
       "
