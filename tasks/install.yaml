@@ -42,6 +42,9 @@
     - "{{ prometheus_bind_exporter_config_path }}"
 
 - name: download and untar bind_exporter tarball
+  environment:
+    http_proxy: "{{ proxy_env.http_proxy | default(None) }}"
+    https_proxy: "{{ proxy_env.https_proxy | default(None) }}"
   unarchive:
     src: "{{ prometheus_bind_exporter_tar_url }}"
     dest: "{{ prometheus_bind_exporter_install_path }}"

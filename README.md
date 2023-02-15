@@ -48,6 +48,15 @@ prometheus_bind_exporter_src_access:
 For typical deployment you can eventually define enable ufw fw and define src access list
 Based on defined variables you can set variables common for all prometheus stack
 
+In isolated environments, you may need to set a proxy for http requestsd. Define environment variables pointing to your proxy as shown below
+
+```yaml
+# here we make a variable named "proxy_env" that is a dictionary
+proxy_env:
+  http_proxy: http://proxy.example.com:8080
+  https_proxy: http://proxy.example.com:8080
+```
+
 Dependencies
 ------------
 
